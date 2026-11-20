@@ -1,0 +1,36 @@
+
+## AIRTLab: 230 fights, 120 non-fights, median length 5.3s, clips with one window 63
+   [brackets] = 95% bootstrap interval, resampled by scene
+A VideoMAE score>=0.6        acc  68.6% | caught 171/230  74.3% [67%-81%] | false alarms  51/120  42.5% [31%-54%] | precision  77.0%
+B VideoMAE alert (as is)     acc  65.7% | caught 151/230  65.7% [58%-73%] | false alarms  41/120  34.2% [22%-44%] | precision  78.6%
+C VideoMAE alert (fixed)     acc  68.6% | caught 166/230  72.2% [65%-79%] | false alarms  46/120  38.3% [27%-49%] | precision  78.3%
+D C + two-person gate        acc  68.6% | caught 166/230  72.2% [64%-79%] | false alarms  46/120  38.3% [28%-50%] | precision  78.3%
+E Pose only (5-fold CV)      acc  74.3% | caught 175/230  76.1% [70%-82%] | false alarms  35/120  29.2% [19%-39%] | precision  83.3%
+F Fusion (5-fold CV)         acc  77.1% | caught 181/230  78.7% [72%-85%] | false alarms  31/120  25.8% [16%-35%] | precision  85.4%
+  Average precision: VideoMAE 0.824 | pose 0.907 | fusion 0.914
+  Three tiers on VideoMAE max score (fights | non-fights):
+    danger  >=0.9: 156 |  39
+    warning 0.6-0.9:  15 |  12
+    normal  <0.6:  59 |  69
+
+## SURV: 150 fights, 150 non-fights, median length 2.0s, clips with one window 298
+   [brackets] = 95% bootstrap interval, resampled by scene
+A VideoMAE score>=0.6        acc  88.0% | caught 138/150  92.0% [87%-96%] | false alarms  24/150  16.0% [11%-22%] | precision  85.2%
+B VideoMAE alert (as is)     acc  50.7% | caught   2/150   1.3% [0%-3%] | false alarms   0/150   0.0% [0%-0%] | precision 100.0%
+C VideoMAE alert (fixed)     acc  88.0% | caught 138/150  92.0% [88%-96%] | false alarms  24/150  16.0% [11%-22%] | precision  85.2%
+D C + two-person gate        acc  82.3% | caught 110/150  73.3% [66%-80%] | false alarms  13/150   8.7% [4%-14%] | precision  89.4%
+E Pose only (5-fold CV)      acc  69.0% | caught 103/150  68.7% [61%-77%] | false alarms  46/150  30.7% [24%-38%] | precision  69.1%
+F Fusion (5-fold CV)         acc  87.3% | caught 136/150  90.7% [86%-95%] | false alarms  24/150  16.0% [10%-22%] | precision  85.0%
+  Average precision: VideoMAE 0.943 | pose 0.719 | fusion 0.895
+  Three tiers on VideoMAE max score (fights | non-fights):
+    danger  >=0.9: 132 |  20
+    warning 0.6-0.9:   6 |   4
+    normal  <0.6:  12 | 126
+
+## Cross-dataset (train on one, test on the other; threshold 0.5)
+pose   AIRTLab->SURV: acc  52.3% | caught 121/150  80.7% [74%-87%] | false alarms 114/150  76.0% [68%-83%] | precision  51.5%  AP 0.446
+fusion AIRTLab->SURV: acc  54.7% | caught 127/150  84.7% [79%-90%] | false alarms 113/150  75.3% [69%-82%] | precision  52.9%  AP 0.469
+VideoMAE fixed alert on SURV for reference: acc  88.0% | caught 138/150  92.0% [87%-96%] | false alarms  24/150  16.0% [11%-21%] | precision  85.2%
+pose   SURV->AIRTLab: acc  48.6% | caught  66/230  28.7% [22%-35%] | false alarms  16/120  13.3% [6%-21%] | precision  80.5%  AP 0.804
+fusion SURV->AIRTLab: acc  62.9% | caught 135/230  58.7% [50%-66%] | false alarms  35/120  29.2% [20%-40%] | precision  79.4%  AP 0.810
+VideoMAE fixed alert on AIRTLab for reference: acc  68.6% | caught 166/230  72.2% [65%-79%] | false alarms  46/120  38.3% [27%-48%] | precision  78.3%

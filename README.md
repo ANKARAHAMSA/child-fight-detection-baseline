@@ -90,3 +90,8 @@ docs/      one-page baseline result PDF
 
 Model: [harshakalluri1403/Violence-Detection](https://github.com/harshakalluri1403/Violence-Detection) (MIT), built on VideoMAE.
 Datasets: SURV, AIRTLab Violence Detection Dataset.
+
+---
+
+## Updates
+- **2026-11-20**: event fix, Qwen3-VL second check, comparison with the first baseline. See [docs/updates/2026-11-20-qwen-second-check.md](docs/updates/2026-11-20-qwen-second-check.md).
